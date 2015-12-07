@@ -6,10 +6,14 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var mongoose = require('mongoose');
+var passport = require('passport');
 
 // this should be called before mongoose.connect
 require('./models/Posts');
 require('./models/Comments');
+
+require('./models/Users');
+require('./config/passport');
 
 // connect to mongo database
 mongoose.connect('mongodb://localhost/news');
@@ -30,6 +34,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Initialize passport after the express.static middleware
+app.use(passport.initialize());
 
 app.use('/', routes);
 app.use('/users', users);
