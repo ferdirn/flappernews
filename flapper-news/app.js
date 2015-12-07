@@ -12,8 +12,11 @@ var mongoose = require('mongoose');
 
 var app = express();
 
-// connect to mongo database
+// this should be called before mongoose.connect
 require('./models/Posts');
+require('./models/Comments');
+
+// connect to mongo database
 mongoose.connect('mongodb://localhost/news');
 
 // view engine setup
