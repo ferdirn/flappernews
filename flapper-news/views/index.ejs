@@ -35,7 +35,8 @@
           {{ post.title }}
         </span>
         <span>
-          <a href="#/posts/{{ $index }}">Comments</a>
+          <!-- <a href="#/posts/{{ $index }}">Comments</a> -->
+          - <a href="#/posts/{{ post._id }}">see comments</a>
         </span>
       </span>
     </div>
@@ -67,7 +68,7 @@
     </div>
 
     <div ng-repeat="comment in post.comments | orderBy: '-upvotes'">
-      <span class="glyphicon glyphicon-thumbs-up" ng-clink="incrementUpvotes(comment)"></span>
+      <span class="glyphicon glyphicon-thumbs-up" ng-click="incrementUpvotes(comment)"></span>
       {{ comment.upvotes }} - by {{ comment.author }}
       <span style="font-size: 20px; margin-left: 10px;">{{ comment.body }}</span>
     </div>
@@ -79,6 +80,11 @@
       </div>
       <button type="submit" class="btn btn-primary">Post</button>
     </form>
+
+    <div>
+      <br>
+      <a href="#/">Home</a>
+    </div>
   </script>
 </body>
 </html>
